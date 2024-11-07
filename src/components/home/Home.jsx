@@ -13,6 +13,12 @@ const Home = () => {
     console.log(data);
     const [startDate, setStartDate] = useState(new Date());
 
+    const incrementCounterBy = (increment) => {
+        for (let i = 0; i < increment; i++) {
+            setCounter((prevCounter) => prevCounter + 1);
+        }
+    };
+
 // handle button submit
     const handleSubmit = e => {
         e.preventDefault()
@@ -43,7 +49,7 @@ const Home = () => {
             .then(data => {
                 console.log(data);
                 setData(data)
-                setCounter(counter + 1)
+                incrementCounterBy(5);
 
             })
 
@@ -96,14 +102,14 @@ const Home = () => {
                                 <label className="label">
                                     <span className="label-text">Amount</span>
                                 </label>
-                                <input type="number" placeholder="Type Your Amount" name='amount' className="input input-bordered" required />
+                                <input type="number" placeholder="Type Your Amount" name='amount' className="input input-bordered"/>
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">payment methode</span>
+                                    <span className="label-text">Payment Methode</span>
                                 </label>
                                 <select className="select select-bordered w-full max-w-xs" name='payment'>
-                                    <option disabled selected>payment methode</option>
+                                    <option disabled selected>Payment Methode💲</option>
                                     <option>Cash</option>
                                     <option>Bekash</option>
                                     <option>Nogod</option>
@@ -114,7 +120,7 @@ const Home = () => {
                                 <label className="label">
                                     <span className="label-text">Expense</span>
                                 </label>
-                                <input type="number" placeholder="Type Your Expens" name='expense' className="input input-bordered" required />
+                                <input type="number" placeholder="Type Your Expens" name='expense' className="input input-bordered"/>
                             </div>
                             <div className="form-control">
                                 <label className="label">

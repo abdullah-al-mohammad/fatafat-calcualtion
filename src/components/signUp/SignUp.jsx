@@ -47,6 +47,7 @@ const SignUp = () => {
                 const user = result.user
                 console.log(user);
                 setSuccess('Account Created Successfully 😎')
+                form.reset()
                 
                 updateProfile(user,{
                     displayName: name,

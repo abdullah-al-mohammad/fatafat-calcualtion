@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { useState } from "react";
 import Swal from 'sweetalert2';
-// import 'sweetalert2/src/sweetalert2.scss'
 
 const CalculatDetails = () => {
     const loadData = useLoaderData()
@@ -23,7 +22,7 @@ const CalculatDetails = () => {
             
             if (result.isConfirmed) {
                 // Proceed with deletion if confirmed
-                fetch(`https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108/${id}`, {
+                fetch(`https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108/id/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

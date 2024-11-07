@@ -2,10 +2,9 @@ import React from 'react';
 import { useContext, useState } from 'react'
 import { AuthContext } from '../../provider/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
-import { updateProfile } from 'firebase/auth';
 
 const Login = () => {
-    const { user, signInUser } = useContext(AuthContext)
+    const { signInUser } = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState()
     const navigate = useNavigate()
     console.log(signInUser);
@@ -23,6 +22,7 @@ const Login = () => {
                 // console.log(signInUser);
                 console.log("User signed in:", result.user);
                 navigate('/')
+                form.reset()
 
             })
             .catch(error => {
