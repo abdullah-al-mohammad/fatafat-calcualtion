@@ -17,9 +17,9 @@ const Header = () => {
             })
     }
     const links = <>
-        <NavLink to='/'><li><a>Home</a></li></NavLink>
-        <NavLink to='/calculate'><li><a>Details</a></li></NavLink>
-        <NavLink to='/contact'><li><a>Contact</a></li></NavLink>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/calculate'>Details</NavLink></li>
+        <li><NavLink to='/contact'>Contact</NavLink></li>
     </>
     return (
         <div className="navbar bg-white">
@@ -59,8 +59,8 @@ const Header = () => {
                     user ? <div className='flex justify-between'>
                         <p className='text-red-500 font-serif capitalize mr-5'>{user.displayName}</p>
                         <img className='rounded-full w-6' src={user.photoURL || profile} alt="profile" />
-                    </div>:
-                    <img className='w-6' src={profile} alt="profile" />
+                    </div> :
+                        <img className='w-6' src={profile} alt="profile" />
                 }
                 <div className=''>
                     {

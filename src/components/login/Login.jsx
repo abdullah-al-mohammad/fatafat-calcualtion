@@ -1,13 +1,13 @@
 import React from 'react';
-import { useContext, useState } from 'react'
+import { useContext, useState, useRef } from 'react'
 import { AuthContext } from '../../provider/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const { signInUser } = useContext(AuthContext)
+    const { signInUser, passWordResetEmail} = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState()
     const navigate = useNavigate()
-    console.log(signInUser);
+    const emailRef = useRef(null)
 
     const handleLogin = e => {
         e.preventDefault()
@@ -31,6 +31,28 @@ const Login = () => {
             })
 
     }
+    const handlePasswordReset = () => {
+        const email = emailRef.current.value
+        if(!email) {
+            alert("Please Provide an email")
+            return
+        } 
+        else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+            alert('please provide valid email')
+            return
+        }
+        console.log(email);
+        // send valodation email
+        passWordResetEmail(email)
+            .then(() => {
+               alert('please check your email')
+
+            }).catch(error => {
+                console.error(error);
+
+            })
+
+    }
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -47,7 +69,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" name="email" className="input input-bordered" required />
+                            <input type="email" placeholder="email" ref={emailRef}  name="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -58,10 +80,10 @@ const Login = () => {
                                 placeholder="password"
                                 name="password"
                                 className="input input-bordered" required />
-                                <span>
-                                </span>
+                            <span>
+                            </span>
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <a onClick={handlePasswordReset} href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
                         <div className="form-control mt-6">

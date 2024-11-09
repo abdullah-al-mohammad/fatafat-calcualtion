@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, createContext, useEffect } from 'react'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import app from '../../src/firebase.config'
 
@@ -30,16 +30,11 @@ const AuthProvider = ({children}) => {
         signOut(auth)
         return
     }
-    // useEffect(() => {
-    //    const unsubsCribe = onAuthStateChanged(auth, currentUser =>{
-    //         setUser(currentUser)
-    //         setLoading(false)
-    //         console.log('obseving currentuser inside useEffect ofvAuthProvider', currentUser);
-    //     })
-    //     return () =>{
-    //         unsubsCribe()
-    //     }
-    // }, [])
+
+    const passWordResetEmail = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
+
     useEffect(() =>{
         const unsubsCribe = onAuthStateChanged(auth, currentUser =>{
             setUser(currentUser)
@@ -56,7 +51,8 @@ const AuthProvider = ({children}) => {
             loading,
             signInUser,
             signUpUser,
-            logOut
+            logOut,
+            passWordResetEmail
     }
     return (
         <AuthContext.Provider value={userInfo}>

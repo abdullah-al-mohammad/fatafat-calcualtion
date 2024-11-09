@@ -7,21 +7,21 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Home = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const [data, setData] = useState(null)
     const [counter, setCounter] = useState(1)
     console.log(data);
     const [startDate, setStartDate] = useState(new Date());
 
-    const incrementCounterBy = (increment) => {
-        for (let i = 0; i < increment; i++) {
-            setCounter((prevCounter) => prevCounter + 1);
+    // handle button submit
+    const handleSubmit = async (e) => {
+        if(user){
+            handleSubmit(e)
         }
-    };
-
-// handle button submit
-    const handleSubmit = e => {
-        e.preventDefault()
+        else{
+            alert("please create an account")
+            e.preventDefault()
+        }
         const form = e.target;
         const date = form.date.value;
         const name = form.name.value;
@@ -36,22 +36,28 @@ const Home = () => {
         const formData = { id, date, name, amount, payment, expense, comment }
         console.log(formData);
 
-        // https://script.google.com/macros/s/AKfycbyID_jRQRdWf3ajBnK1-qSj0uiROtKIXV_m20SPA70AyXv-iqtHcEpvkskqL1DneNTEGA/exec
+        try {
+            // Synchronous-style request with async/await
+            const response = await fetch('https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
 
-        fetch('https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(res => res.json())
-            .then(data => {
+            if (response.ok) {
+                const data = await response.json();
                 console.log(data);
-                setData(data)
-                incrementCounterBy(5);
-
-            })
+                setData(data);  // Update data in state if needed
+                from.reset()  // Increment counter after successful fetch
+                setCounter(counter + 1);
+            } else {
+                console.error("Failed to submit data:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error submitting data:", error);
+        }
 
 
     }
@@ -102,7 +108,7 @@ const Home = () => {
                                 <label className="label">
                                     <span className="label-text">Amount</span>
                                 </label>
-                                <input type="number" placeholder="Type Your Amount" name='amount' className="input input-bordered"/>
+                                <input type="number" placeholder="Type Your Amount" name='amount' className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -120,7 +126,7 @@ const Home = () => {
                                 <label className="label">
                                     <span className="label-text">Expense</span>
                                 </label>
-                                <input type="number" placeholder="Type Your Expens" name='expense' className="input input-bordered"/>
+                                <input type="number" placeholder="Type Your Expens" name='expense' className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
