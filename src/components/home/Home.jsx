@@ -53,7 +53,7 @@ const Home = () => {
 
     }
     return (
-        <div className=' bgImage py-5 my-5'>
+        <div className='bgImage py-3'>
             <Header></Header>
             <div>
                 <h1 className='text-3xl font-extrabold'><span className='text-orange-500'>Fatafat Rider</span> Calculation</h1>

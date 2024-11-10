@@ -68,7 +68,7 @@ const CalculatDetails = () => {
                         {/* row 1 */}
                         {
                             datas.map(data => <tr key={data.id} className="bg-base-200 border">
-                                <th>{data.id}</th>
+                                <th>{}</th>
                                 <td className='border'>{data.date}</td>
                                 <td className='border'>{data.name}</td>
                                 <td className='border'>{data.amount}</td>
