@@ -22,7 +22,7 @@ const Header = () => {
         <li><NavLink to='/contact'>Contact</NavLink></li>
     </>
     return (
-        <div className="navbar bg-white">
+        <div className="navbar">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,6 +43,13 @@ const Header = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         {links}
+                        {
+                            user ? <div className='flex justify-between'>
+                                <p className='text-red-500 font-serif capitalize mr-5'>{user.displayName}</p>
+                                <img className='rounded-full w-6' src={user.photoURL || profile} alt="profile" />
+                            </div> :
+                                <img className='w-6' src={profile} alt="profile" />
+                        }
                     </ul>
                 </div>
                 <a className="text-xl">
@@ -54,7 +61,7 @@ const Header = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end flex justify-evenly">
+            <div className="navbar-end hidden sm:flex justify-evenly ">
                 {
                     user ? <div className='flex justify-between'>
                         <p className='text-red-500 font-serif capitalize mr-5'>{user.displayName}</p>
@@ -62,7 +69,7 @@ const Header = () => {
                     </div> :
                         <img className='w-6' src={profile} alt="profile" />
                 }
-                <div className=''>
+                <div>
                     {
                         user ? <Link to="/login"><button onClick={handleLogOut} className='btn btn-warning'>Logout</button></Link>
                             : <Link to="/login"><button className='btn btn-warning'>Login</button></Link>
