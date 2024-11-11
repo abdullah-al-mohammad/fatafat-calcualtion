@@ -4,7 +4,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const { signInUser, passWordResetEmail} = useContext(AuthContext)
+    const { signInUser, passWordResetEmail } = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState()
     const navigate = useNavigate()
     const emailRef = useRef(null)
@@ -33,11 +33,11 @@ const Login = () => {
     }
     const handlePasswordReset = () => {
         const email = emailRef.current.value
-        if(!email) {
+        if (!email) {
             alert("Please Provide an email")
             return
-        } 
-        else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+        }
+        else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
             alert('please provide valid email')
             return
         }
@@ -45,7 +45,7 @@ const Login = () => {
         // send valodation email
         passWordResetEmail(email)
             .then(() => {
-               alert('please check your email')
+                alert('please check your email')
 
             }).catch(error => {
                 console.error(error);
@@ -54,13 +54,12 @@ const Login = () => {
 
     }
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login now!</h1>
                     <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Calculation is the process of determining a numerical result by performing mathematical operations like addition, subtraction, multiplication, or division. Calculations are foundational in many fields, including engineering, finance, science, and everyday life
                     </p>
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -69,7 +68,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" ref={emailRef}  name="email" className="input input-bordered" required />
+                            <input type="email" placeholder="email" ref={emailRef} name="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

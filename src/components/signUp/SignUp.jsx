@@ -13,7 +13,7 @@ const SignUp = () => {
     const hasUpperCase = /[A-Z]/;
     const emailRef = useRef(null)
     console.log(emailRef);
-    
+
 
     const handleSignUp = e => {
         e.preventDefault()
@@ -48,15 +48,15 @@ const SignUp = () => {
                 console.log(user);
                 setSuccess('Account Created Successfully 😎')
                 form.reset()
-                
-                updateProfile(user,{
+
+                updateProfile(user, {
                     displayName: name,
                     photoURL: user.photoURL
                 })
-                .then(() =>{
-                    console.log('update profile');
-                    
-                })
+                    .then(() => {
+                        console.log('update profile');
+
+                    })
 
             })
             .catch(error => {
@@ -66,13 +66,12 @@ const SignUp = () => {
 
     }
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">SignUp now!</h1>
                     <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Calculation is the process of determining a numerical result by performing mathematical operations like addition, subtraction, multiplication, or division. Calculations are foundational in many fields, including engineering, finance, science, and everyday life
                     </p>
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
