@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Swal from 'sweetalert2';
+import { AuthContext } from '../provider/AuthProvider';
 
 const CalculatDetails = () => {
+    const {user} = useContext(AuthContext)
+    const userId = user?.id
     const loadData = useLoaderData()
     console.log(loadData);
-    const [datas, setData] = useState(loadData)
+    const userIdData = loadData.filter(userData => userData.userId === userId)
+    const [datas, setData] = useState(userIdData)
+    // const [users, setUsers] = useState(userIdData)
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -50,18 +55,19 @@ const CalculatDetails = () => {
 
     return (
         <div>
-            <h2>Hisab Details</h2>
+            <h2 className='mb-3 font-extrabold'>Hisab Details</h2>
             <div className="overflow-x-auto text-center border">
                 <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Payment</th>
-                            <th>Expens</th>
+                            <th className='text-orange-500 font-bold font-mono'>Date</th>
+                            <th className='text-orange-500 font-bold font-mono'>Name</th>
+                            <th className='text-orange-500 font-bold font-mono'>Amount</th>
+                            <th className='text-orange-500 font-bold font-mono'>Payment</th>
+                            <th className='text-orange-500 font-bold font-mono'>Expens</th>
+                            <th className='text-orange-500 font-bold font-mono'>Comment</th>
                         </tr>
                     </thead>
                     <tbody className='border'>
@@ -74,7 +80,8 @@ const CalculatDetails = () => {
                                 <td className='border'>{data.amount}</td>
                                 <td className='border'>{data.payment}</td>
                                 <td className='border'>{data.expense}</td>
-                                <td onClick={() => handleDelete(data.id)} className='border btn btn-accent'>X</td>
+                                <td className='border'>{data.comment}</td>
+                                <button onClick={() => handleDelete(data.id)} className='border btn btn-accent'>X</button>
                             </tr>)
                         }
                     </tbody>

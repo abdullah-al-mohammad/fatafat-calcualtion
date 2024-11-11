@@ -43,7 +43,6 @@ const Home = () => {
                 .then(data => {
                     console.log(data);
                     setData(data)
-                    setCounter((counter) => counter + 1);
 
                 })
         }
@@ -110,8 +109,8 @@ const Home = () => {
                                     <select className="select select-bordered w-full max-w-xs" name='payment'>
                                         <option disabled selected>Payment Methode💲</option>
                                         <option>Cash</option>
-                                        <option>Bekash</option>
-                                        <option>Nogod</option>
+                                        <option>Bkas</option>
+                                        <option>Nagad</option>
                                         <option>Rocket</option>
                                     </select>
                                 </div>
