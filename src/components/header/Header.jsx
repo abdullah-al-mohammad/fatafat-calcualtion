@@ -50,6 +50,14 @@ const Header = () => {
                             </div> :
                                 <img className='w-6' src={profile} alt="profile" />
                         }
+                        {
+                            <div>
+                                {
+                                    user ? <Link to="/login"><button onClick={handleLogOut} className='btn btn-warning'>Logout</button></Link>
+                                        : <Link to="/login"><button className='btn btn-warning'>Login</button></Link>
+                                }
+                            </div>
+                        }
                     </ul>
                 </div>
                 <a className="text-xl">
