@@ -56,25 +56,25 @@ const Home = () => {
         <div className='bgImage py-3'>
             <Header></Header>
             <div>
-                <h1 className='text-3xl font-extrabold'><span className='text-orange-500'>Fatafat Rider</span> Calculation</h1>
-                <div className="hero min-h-screen">
+                <h1 className='text-3xl font-extrabold text-black'><span className='text-orange-500'>Fatafat Rider</span> Calculation</h1>
+                <div className="min-h-screen">
                     <div className="hero-content flex-col lg:flex-row-reverse">
                         <div className="card w-full max-w-sm shrink-0 shadow-2xl">
                             <form onSubmit={handleSubmit} className="card-body">
-                                <div>
+                                <div className='form-control'>
                                     <label className="label">
                                         <span className="label-text">Select Date</span>
                                     </label>
-                                    <DatePicker className='input input-bordered' name='date' selected={startDate} onChange={(date) => setStartDate(date)} />
+                                    <DatePicker className='input input-bordered w-full' name='date' selected={startDate} onChange={(date) => setStartDate(date)} />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Marchent Name</span>
                                     </label>
                                     <select className="select select-bordered w-full max-w-xs" name='name'>
-                                        <option disabled selected>Fatafat Hyper Merket</option>
-                                        <option>Fif Restaurent</option>
-                                        <option>Burgerganj</option>
+                                        <option disabled selected>Fatafat Hyper Market</option>
+                                        <option>Fif Restaurant</option>
+                                        <option>Burgrganj</option>
                                         <option>Heshel Cafe</option>
                                         <option>Gaang</option>
                                         <option>Paar</option>
@@ -127,9 +127,9 @@ const Home = () => {
                                     </label>
                                     <textarea className="textarea textarea-primary" name='comment' placeholder="Type Your Comment"></textarea>
                                 </div>
-                                <div className="mt-6 md:flex justify-between">
-                                    <button className="btn btn-success">Submit</button>
-                                    <Link to='/calculate'><button className="btn btn-error">Details</button></Link>
+                                <div className="mt-6 flex flex-col lg:flex-row justify-between">
+                                    <button className="btn btn-success mb-4 lg:mb-0">Submit</button>
+                                    <Link to='/calculate' className="btn btn-error">Details</Link>
                                 </div>
                             </form>
                         </div>
