@@ -8,12 +8,26 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { v4 as uuidv4 } from 'uuid';
 import '../home/home.css'
 import Header from '../header/Header';
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
+// import DateTimePicker from 'react-datetime-picker';
 
 const Home = () => {
     const { user } = useContext(AuthContext)
     const [data, setData] = useState(null)
-    console.log(data);
     const [startDate, setStartDate] = useState(new Date());
+    const [value, onChange] = useState(new Date());
+    // const [dateTime, setDateTime] = useState(new Date());
+
+    const CustomTimeInput = ({ date, value, onChange }) => (
+        <input
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onClick={(e) => e.target?.focus()}
+          style={{ border: "solid 1px pink", backgroundColor: 'white' }}
+        />
+      );
 
     // handle button submit
     const handleSubmit = e => {
@@ -43,7 +57,6 @@ const Home = () => {
                 .then(data => {
                     console.log(data);
                     setData(data)
-                    setCounter((counter) => counter + 1);
 
                 })
         }
@@ -59,20 +72,27 @@ const Home = () => {
                 <h1 className='text-3xl font-extrabold text-black'><span className='text-orange-500'>Fatafat Rider</span> Calculation</h1>
                 <div className="min-h-screen">
                     <div className="hero-content flex-col lg:flex-row-reverse">
-                        <div className="card w-full max-w-sm shrink-0 shadow-2xl">
-                            <form onSubmit={handleSubmit} className="card-body">
+                        <div className="card w-full max-w-sm shrink-0 md:shadow-2xl shadow-none">
+                            <form onSubmit={handleSubmit} className="card-body px-0 md:px-8">
                                 <div className='form-control'>
                                     <label className="label">
                                         <span className="label-text">Select Date</span>
                                     </label>
-                                    <DatePicker className='input input-bordered w-full' name='date' selected={startDate} onChange={(date) => setStartDate(date)} />
+                                    <TimePicker onChange={onChange} value={value} className="class1 class2" id='time-picker'/>
+                                    {/* <DateTimePicker onChange={setDateTime} value={dateTime} /> */}
+                                </div>
+                                <div className='form-control'>
+                                    <label className="label">
+                                        <span className="label-text">Select Date</span>
+                                    </label>
+                                    <DatePicker className='input input-bordered w-full' name='date' selected={startDate}  showTimeInput customTimeInput={<CustomTimeInput/>}/>
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Marchent Name</span>
                                     </label>
-                                    <select className="select select-bordered w-full max-w-xs" name='name'>
-                                        <option disabled selected>Fatafat Hyper Market</option>
+                                    <select className="select select-bordered w-full max-w-xs" name='name' required>
+                                        <option value='' disabled selected hidden>Select Restaurant</option>
                                         <option>Fif Restaurant</option>
                                         <option>Burgrganj</option>
                                         <option>Heshel Cafe</option>
@@ -105,13 +125,13 @@ const Home = () => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Payment Methode</span>
+                                        <span className="label-text">Payment Method</span>
                                     </label>
-                                    <select className="select select-bordered w-full max-w-xs" name='payment'>
-                                        <option disabled selected>Payment Methode💲</option>
+                                    <select className="select select-bordered w-full max-w-xs" name='payment' required>
+                                        <option value='' disabled selected hidden>Payment Method💲</option>
                                         <option>Cash</option>
-                                        <option>Bekash</option>
-                                        <option>Nogod</option>
+                                        <option>Bkas</option>
+                                        <option>Nagad</option>
                                         <option>Rocket</option>
                                     </select>
                                 </div>
@@ -119,7 +139,7 @@ const Home = () => {
                                     <label className="label">
                                         <span className="label-text">Expense</span>
                                     </label>
-                                    <input type="number" placeholder="Type Your Expens" name='expense' className="input input-bordered" />
+                                    <input type="number" placeholder="Type Your Expense" name='expense' className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -141,5 +161,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108?tabId=Page1
