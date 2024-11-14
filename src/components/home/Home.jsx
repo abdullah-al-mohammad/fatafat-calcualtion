@@ -94,7 +94,7 @@ const Home = () => {
                                         <label className="label">
                                             <span className="label-text">Merchant Name</span>
                                         </label>
-                                        <select className="select select-bordered w-full max-w-xs" name='name' required>
+                                        <select className="select select-bordered w-full" name='name' required>
                                             <option value='' disabled selected hidden>Select Restaurant</option>
                                             <option>Fif Restaurant</option>
                                             <option>Burgrganj</option>
@@ -130,7 +130,7 @@ const Home = () => {
                                         <label className="label">
                                             <span className="label-text">Payment Method</span>
                                         </label>
-                                        <select className="select select-bordered w-full max-w-xs" name='payment' required>
+                                        <select className="select select-bordered w-full" name='payment' required>
                                             <option value='' disabled selected hidden>Payment Method💲</option>
                                             <option>Cash</option>
                                             <option>Bkas</option>

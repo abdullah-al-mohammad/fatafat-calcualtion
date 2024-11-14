@@ -5,12 +5,12 @@ const Contact = () => {
     return (
         <div className='container mx-auto mb-6'>
             <div className='bgContact w-full h-96 relative'>
-                <h1 className="text-6xl text-red-500 absolute left-1/2 top-1/2 scale-y-50 scale-x-50">Contact Us</h1>
+                <h1 className="text-6xl text-red-500 text-center">Contact Us</h1>
             </div>
-            <div className='mt-9'>
-                <h1>Let's Start a Conversation</h1>
-                <div className='flex justify-between items-center gap-x-6'>
-                    <div className='w-1/2'>
+            <div className='mt-9 text-center'>
+                <div className='lg:flex justify-between items-center gap-x-6'>
+                    <div className='mb-7 lg:mb-0'>
+                        <h1>Let's Start a Conversation</h1>
                         <h1>Ask How We Can Help You:</h1>
                         <h5>Another leader on our list of the best contact us page examples is Tune.</h5>
                         <p>The contact form targets new prospects, so they can easily send presale queries. Just below their form, they also feature a call to action targeting their existing customers.</p>
