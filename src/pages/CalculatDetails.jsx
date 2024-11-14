@@ -10,7 +10,7 @@ const CalculatDetails = () => {
     const loadData = useLoaderData()
     console.log(loadData);
     const userIdData = loadData.filter(userData => userData.userId === userId)
-    const [datas, setData] = useState(userIdData)
+    const [allData, setData] = useState(userIdData)
     // const [users, setUsers] = useState(userIdData)
 
     const handleDelete = (id) => {
@@ -62,19 +62,21 @@ const CalculatDetails = () => {
                     <thead>
                         <tr>
                             <th></th>
+                            <th className='text-orange-500 font-bold font-mono'>Time</th>
                             <th className='text-orange-500 font-bold font-mono'>Date</th>
                             <th className='text-orange-500 font-bold font-mono'>Name</th>
                             <th className='text-orange-500 font-bold font-mono'>Amount</th>
                             <th className='text-orange-500 font-bold font-mono'>Payment</th>
-                            <th className='text-orange-500 font-bold font-mono'>Expens</th>
+                            <th className='text-orange-500 font-bold font-mono'>Expense</th>
                             <th className='text-orange-500 font-bold font-mono'>Comment</th>
                         </tr>
                     </thead>
                     <tbody className='border'>
                         {/* row 1 */}
                         {
-                            datas.map(data => <tr key={data.id} className="bg-base-200 border">
+                            allData.map(data => <tr key={data.id} className="bg-base-200 border">
                                 <th>{}</th>
+                                <td className='border'>{data.time}</td>
                                 <td className='border'>{data.date}</td>
                                 <td className='border'>{data.name}</td>
                                 <td className='border'>{data.amount}</td>

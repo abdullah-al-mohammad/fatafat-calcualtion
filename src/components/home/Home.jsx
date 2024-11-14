@@ -43,8 +43,9 @@ const Home = () => {
             const payment = form.payment.value;
             const expense = form.expense.value;
             const comment = form.comment.value;
-            console.log(name, amount, payment, expense, comment, date);
-            const formData = { id, date, name, amount, payment, expense, comment }
+            const time = form.time.value;
+            console.log(name, amount, payment, expense, comment, date, time);
+            const formData = { id, time, date, name, amount, payment, expense, comment }
             console.log(formData);
             fetch('https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108', {
                 method: "POST",
@@ -69,16 +70,16 @@ const Home = () => {
         <div className='bgImage py-3'>
             <Header></Header>
             <div>
-                <h1 className='text-3xl font-extrabold text-black'><span className='text-orange-500'>Fatafat Rider</span> Calculation</h1>
+                <h1 className='text-3xl font-extrabold text-black'><span className='text-orange-500'>Fatafat Rider</span> Calculate</h1>
                 <div className="min-h-screen">
                     <div className="hero-content flex-col lg:flex-row-reverse">
                         <div className="card w-full max-w-sm shrink-0 md:shadow-2xl shadow-none">
                             <form onSubmit={handleSubmit} className="card-body px-0 md:px-8">
                                 <div className='form-control'>
                                     <label className="label">
-                                        <span className="label-text">Select Date</span>
+                                        <span className="label-text">Select Time</span>
                                     </label>
-                                    <TimePicker onChange={onChange} value={value} className="class1 class2" id='time-picker'/>
+                                    <TimePicker onChange={onChange} value={value} name='time' amPmAriaLabel='Select AM/PM' className="class1 class2" id='time-picker'/>
                                     {/* <DateTimePicker onChange={setDateTime} value={dateTime} /> */}
                                 </div>
                                 <div className='form-control'>
@@ -89,7 +90,7 @@ const Home = () => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Marchent Name</span>
+                                        <span className="label-text">Merchant Name</span>
                                     </label>
                                     <select className="select select-bordered w-full max-w-xs" name='name' required>
                                         <option value='' disabled selected hidden>Select Restaurant</option>
