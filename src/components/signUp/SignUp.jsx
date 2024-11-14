@@ -6,10 +6,10 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { updateProfile } from 'firebase/auth';
 
 const SignUp = () => {
-    const { signUpUser } = useContext(AuthContext)
+    const { signUpUser, passWordResetEmail } = useContext(AuthContext)
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
-    const [showPasssword, setShowPassword] = useState();
+    const [showPassword, setShowPassword] = useState();
     const hasUpperCase = /[A-Z]/;
     const emailRef = useRef(null)
     console.log(emailRef);
@@ -63,6 +63,28 @@ const SignUp = () => {
                 console.error("Error during sign-up:", error);
 
             })
+    }
+
+    const handlePasswordReset = () => {
+        const email = emailRef.current.value
+        if (!email) {
+            alert("Please Provide an email")
+            return
+        }
+        else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            alert('please provide valid email')
+            return
+        }
+        console.log(email);
+        // send valodation email
+        passWordResetEmail(email)
+            .then(() => {
+                alert('please check your email')
+
+            }).catch(error => {
+                console.error(error);
+
+            })
 
     }
     return (
@@ -94,17 +116,17 @@ const SignUp = () => {
                             </label>
                             <div className='relative'>
                                 <input
-                                    type={showPasssword ? 'text' : 'password'}
+                                    type={showPassword ? 'text' : 'password'}
                                     placeholder="password"
                                     name='password'
                                     className="input input-bordered w-full" required />
                                 <span className='absolute top-4 right-3' onClick={() => setShowPassword(!showPasssword)}>
                                     {
-                                        showPasssword ? <FaEyeSlash /> : <FaEye />
+                                        showPassword ? <FaEyeSlash /> : <FaEye />
                                     }
                                 </span>
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <a onClick={handlePasswordReset} href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
                         </div>

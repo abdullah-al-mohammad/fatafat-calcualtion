@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext, useState, useRef } from 'react'
 import { AuthContext } from '../../provider/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const { signInUser, passWordResetEmail } = useContext(AuthContext)
@@ -74,11 +75,16 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input
-                                type="password"
-                                placeholder="password"
-                                name="password"
-                                className="input input-bordered" required />
+                            <div className='relative'> 
+                                <input
+                                    type={showPassword ? 'text': 'password'}
+                                    placeholder="password"
+                                    name="password"
+                                    className="input input-bordered w-full" required />
+                                    <span className='absolute top-4 right-3' onClick={() => setShowPassword(!showPassword)}>
+                                        {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+                                    </span>
+                            </div>
                             <span>
                             </span>
                             <label className="label">

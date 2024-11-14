@@ -6,12 +6,9 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const CalculatDetails = () => {
     const {user} = useContext(AuthContext)
-    const userId = user?.id
     const loadData = useLoaderData()
     console.log(loadData);
-    const userIdData = loadData.filter(userData => userData.userId === userId)
-    const [allData, setData] = useState(userIdData)
-    // const [users, setUsers] = useState(userIdData)
+    const [allData, setData] = useState(loadData)
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -32,7 +29,7 @@ const CalculatDetails = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
-                        const updatedData = datas.filter(data => data.id !== id);
+                        const updatedData = allData.filter(data => data.id !== id);
                         setData(updatedData); // Update the state to remove deleted item
                         Swal.fire({
                             title: "Deleted!",
@@ -54,7 +51,7 @@ const CalculatDetails = () => {
 
 
     return (
-        <div>
+        <div className='container mx-auto'>
             <h2 className='mb-3 font-extrabold'>Hisab Details</h2>
             <div className="overflow-x-auto text-center border">
                 <table className="table">

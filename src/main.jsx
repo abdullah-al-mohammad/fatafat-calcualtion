@@ -14,6 +14,7 @@ import AuthProvider from './provider/AuthProvider.jsx';
 import SignUp from './components/signUp/SignUp.jsx';
 import CalculatDetails from './pages/CalculatDetails.jsx';
 import PrivateRouter from './components/router/PrivateRouter.jsx';
+import Contact from './pages/Contact.jsx';
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
         path: '/calculate',
         element: <PrivateRouter><CalculatDetails></CalculatDetails></PrivateRouter>,
         loader: () => fetch('https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108')
+      },
+      {
+        path: '/contact',
+        element: <Contact></Contact>
       }
     ]
   },

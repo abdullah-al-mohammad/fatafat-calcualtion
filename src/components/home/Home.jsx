@@ -22,12 +22,12 @@ const Home = () => {
 
     const CustomTimeInput = ({ date, value, onChange }) => (
         <input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onClick={(e) => e.target?.focus()}
-          style={{ border: "solid 1px pink", backgroundColor: 'white' }}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            onClick={(e) => e.target?.focus()}
+            style={{ border: "solid 1px pink", backgroundColor: 'white' }}
         />
-      );
+    );
 
     // handle button submit
     const handleSubmit = e => {
@@ -58,6 +58,7 @@ const Home = () => {
                 .then(data => {
                     console.log(data);
                     setData(data)
+                    form.reset('')
 
                 })
         }
@@ -69,90 +70,92 @@ const Home = () => {
     return (
         <div className='bgImage py-3'>
             <Header></Header>
-            <div>
-                <h1 className='text-3xl font-extrabold text-black'><span className='text-orange-500'>Fatafat Rider</span> Calculate</h1>
-                <div className="min-h-screen">
-                    <div className="hero-content flex-col lg:flex-row-reverse">
-                        <div className="card w-full max-w-sm shrink-0 md:shadow-2xl shadow-none">
-                            <form onSubmit={handleSubmit} className="card-body px-0 md:px-8">
-                                <div className='form-control'>
-                                    <label className="label">
-                                        <span className="label-text">Select Time</span>
-                                    </label>
-                                    <TimePicker onChange={onChange} value={value} name='time' amPmAriaLabel='Select AM/PM' className="class1 class2" id='time-picker'/>
-                                    {/* <DateTimePicker onChange={setDateTime} value={dateTime} /> */}
-                                </div>
-                                <div className='form-control'>
-                                    <label className="label">
-                                        <span className="label-text">Select Date</span>
-                                    </label>
-                                    <DatePicker className='input input-bordered w-full' name='date' selected={startDate}  showTimeInput customTimeInput={<CustomTimeInput/>}/>
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Merchant Name</span>
-                                    </label>
-                                    <select className="select select-bordered w-full max-w-xs" name='name' required>
-                                        <option value='' disabled selected hidden>Select Restaurant</option>
-                                        <option>Fif Restaurant</option>
-                                        <option>Burgrganj</option>
-                                        <option>Heshel Cafe</option>
-                                        <option>Gaang</option>
-                                        <option>Paar</option>
-                                        <option>Down Town</option>
-                                        <option>Chileghuri</option>
-                                        <option>T.F.C</option>
-                                        <option>Cafe Highway</option>
-                                        <option>Fisher Village</option>
-                                        <option>Seven Days</option>
-                                        <option>A.F.C</option>
-                                        <option>Raj Hotel</option>
-                                        <option>Fatafat Custom</option>
-                                        <option>Behati</option>
-                                        <option>Haji Nanna</option>
-                                        <option>Dhaka Biriyani</option>
-                                        <option>Ar Rohman</option>
-                                        <option>Isha Kachchi</option>
-                                        <option>Fisher</option>
-                                        <option>Cafe Blast</option>
-                                        <option>Delowar Chotpoti</option>
-                                    </select>
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Amount</span>
-                                    </label>
-                                    <input type="number" placeholder="Type Your Amount" name='amount' className="input input-bordered" />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Payment Method</span>
-                                    </label>
-                                    <select className="select select-bordered w-full max-w-xs" name='payment' required>
-                                        <option value='' disabled selected hidden>Payment Method💲</option>
-                                        <option>Cash</option>
-                                        <option>Bkas</option>
-                                        <option>Nagad</option>
-                                        <option>Rocket</option>
-                                    </select>
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Expense</span>
-                                    </label>
-                                    <input type="number" placeholder="Type Your Expense" name='expense' className="input input-bordered" />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Comment</span>
-                                    </label>
-                                    <textarea className="textarea textarea-primary" name='comment' placeholder="Type Your Comment"></textarea>
-                                </div>
-                                <div className="mt-6 flex flex-col lg:flex-row justify-between">
-                                    <button className="btn btn-success mb-4 lg:mb-0">Submit</button>
-                                    <Link to='/calculate' className="btn btn-error">Details</Link>
-                                </div>
-                            </form>
+            <div className='container mx-auto'>
+                <div>
+                    <h1 className='text-3xl font-extrabold text-black text-center'><span className='text-orange-500'>Fatafat Rider</span> Calculate</h1>
+                    <div className="min-h-screen">
+                        <div className="hero-content flex-col lg:flex-row-reverse">
+                            <div className="card w-full max-w-sm shrink-0 md:shadow-2xl shadow-none">
+                                <form onSubmit={handleSubmit} className="card-body px-0 md:px-8">
+                                    <div className='form-control'>
+                                        <label className="label">
+                                            <span className="label-text">Select Time</span>
+                                        </label>
+                                        <TimePicker onChange={onChange} value={value} name='time' format='h:mm: a' amPmAriaLabel='Select AM/PM' className="class1 class2" id='time-picker' />
+                                        {/* <DateTimePicker onChange={setDateTime} value={dateTime} /> */}
+                                    </div>
+                                    <div className='form-control'>
+                                        <label className="label">
+                                            <span className="label-text">Select Date</span>
+                                        </label>
+                                        <DatePicker className='input input-bordered w-full' name='date' selected={startDate} showTimeInput customTimeInput={<CustomTimeInput />} />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Merchant Name</span>
+                                        </label>
+                                        <select className="select select-bordered w-full max-w-xs" name='name' required>
+                                            <option value='' disabled selected hidden>Select Restaurant</option>
+                                            <option>Fif Restaurant</option>
+                                            <option>Burgrganj</option>
+                                            <option>Heshel Cafe</option>
+                                            <option>Gaang</option>
+                                            <option>Paar</option>
+                                            <option>Down Town</option>
+                                            <option>Chileghuri</option>
+                                            <option>T.F.C</option>
+                                            <option>Cafe Highway</option>
+                                            <option>Fisher Village</option>
+                                            <option>Seven Days</option>
+                                            <option>A.F.C</option>
+                                            <option>Raj Hotel</option>
+                                            <option>Fatafat Custom</option>
+                                            <option>Behati</option>
+                                            <option>Haji Nanna</option>
+                                            <option>Dhaka Biriyani</option>
+                                            <option>Ar Rohman</option>
+                                            <option>Isha Kachchi</option>
+                                            <option>Fisher</option>
+                                            <option>Cafe Blast</option>
+                                            <option>Delowar Chotpoti</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Amount</span>
+                                        </label>
+                                        <input type="number" placeholder="Type Your Amount" name='amount' className="input input-bordered" />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Payment Method</span>
+                                        </label>
+                                        <select className="select select-bordered w-full max-w-xs" name='payment' required>
+                                            <option value='' disabled selected hidden>Payment Method💲</option>
+                                            <option>Cash</option>
+                                            <option>Bkas</option>
+                                            <option>Nagad</option>
+                                            <option>Rocket</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Expense</span>
+                                        </label>
+                                        <input type="number" placeholder="Type Your Expense" name='expense' className="input input-bordered" />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Comment</span>
+                                        </label>
+                                        <textarea className="textarea textarea-primary" name='comment' placeholder="Type Your Comment"></textarea>
+                                    </div>
+                                    <div className="mt-6 flex flex-col lg:flex-row justify-between">
+                                        <button className="btn btn-success mb-4 lg:mb-0">Submit</button>
+                                        <Link to='/calculate' className="btn btn-error">Details</Link>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
