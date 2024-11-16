@@ -55,47 +55,49 @@ const Login = () => {
 
     }
     return (
-        <div className="bg-base-200 min-h-screen">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">
-                        Calculation is the process of determining a numerical result by performing mathematical operations like addition, subtraction, multiplication, or division. Calculations are foundational in many fields, including engineering, finance, science, and everyday life
-                    </p>
-                </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <form onSubmit={handleLogin} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="email" placeholder="email" ref={emailRef} name="email" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <div className='relative'> 
-                                <input
-                                    type={showPassword ? 'text': 'password'}
-                                    placeholder="password"
-                                    name="password"
-                                    className="input input-bordered w-full" required />
+        <div className='bg-base-200'>
+            <div className="container mx-auto min-h-screen">
+                <div className="hero-content flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
+                        <h1 className="text-5xl font-bold">Login now!</h1>
+                        <p className="py-6">
+                            Calculation is the process of determining a numerical result by performing mathematical operations like addition, subtraction, multiplication, or division. Calculations are foundational in many fields, including engineering, finance, science, and everyday life
+                        </p>
+                    </div>
+                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                        <form onSubmit={handleLogin} className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" placeholder="email" ref={emailRef} name="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <div className='relative'>
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        placeholder="password"
+                                        name="password"
+                                        className="input input-bordered w-full" required />
                                     <span className='absolute top-4 right-3' onClick={() => setShowPassword(!showPassword)}>
                                         {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
                                     </span>
+                                </div>
+                                <span>
+                                </span>
+                                <label className="label">
+                                    <a onClick={handlePasswordReset} href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                </label>
                             </div>
-                            <span>
-                            </span>
-                            <label className="label">
-                                <a onClick={handlePasswordReset} href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
-                        </div>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
-                        </div>
-                    </form>
-                    <p>Don't have an account please? <Link className='text-blue-600 font-bold' to='/signUp'>SignUp</Link></p>
+                            <div className="form-control mt-6">
+                                <button className="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                        <p className='p-3'>Don't have an account please? <Link className='text-blue-600 font-bold' to='/signUp'>SignUp</Link></p>
+                    </div>
                 </div>
             </div>
         </div>

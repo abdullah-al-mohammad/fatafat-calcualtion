@@ -88,65 +88,67 @@ const SignUp = () => {
 
     }
     return (
-        <div className="bg-base-200 min-h-screen">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">SignUp now!</h1>
-                    <p className="py-6">
-                        Calculation is the process of determining a numerical result by performing mathematical operations like addition, subtraction, multiplication, or division. Calculations are foundational in many fields, including engineering, finance, science, and everyday life
-                    </p>
-                </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <form onSubmit={handleSignUp} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input type="text" placeholder="Enter Your Name" name='name' className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="email" placeholder="email" ref={emailRef} name='email' className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <div className='relative'>
-                                <input
-                                    type={showPassword ? 'text' : 'password'}
-                                    placeholder="password"
-                                    name='password'
-                                    className="input input-bordered w-full" required />
-                                <span className='absolute top-4 right-3' onClick={() => setShowPassword(!showPasssword)}>
-                                    {
-                                        showPassword ? <FaEyeSlash /> : <FaEye />
-                                    }
-                                </span>
+        <div className="bg-base-200">
+            <div className='container mx-auto min-h-screen'>
+                <div className="hero-content flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
+                        <h1 className="text-5xl font-bold">SignUp now!</h1>
+                        <p className="py-6">
+                            Calculation is the process of determining a numerical result by performing mathematical operations like addition, subtraction, multiplication, or division. Calculations are foundational in many fields, including engineering, finance, science, and everyday life
+                        </p>
+                    </div>
+                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                        <form onSubmit={handleSignUp} className="card-body">
+                            <div className="form-control">
                                 <label className="label">
-                                    <a onClick={handlePasswordReset} href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <span className="label-text">Name</span>
                                 </label>
+                                <input type="text" placeholder="Enter Your Name" name='name' className="input input-bordered" required />
                             </div>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="accepted" id="" />
-                            <label className='ml-2' htmlFor='terms'>Accept Our <a href="">terms And Conditions</a></label>
-                        </div>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary">SignUp</button>
-                        </div>
-                        <div>
-                            {
-                                error && <p className='text-red-600'>{error}</p>
-                            }
-                            {
-                                success && <p className='text-green-600'>{success}</p>
-                            }
-                        </div>
-                    </form>
-                    <p>Already have an account please? <Link className='text-blue-600 font-bold' to='/login'>Login</Link></p>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" placeholder="email" ref={emailRef} name='email' className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <div className='relative'>
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        placeholder="password"
+                                        name='password'
+                                        className="input input-bordered w-full" required />
+                                    <span className='absolute top-4 right-3' onClick={() => setShowPassword(!showPasssword)}>
+                                        {
+                                            showPassword ? <FaEyeSlash /> : <FaEye />
+                                        }
+                                    </span>
+                                    <label className="label">
+                                        <a onClick={handlePasswordReset} href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="accepted" id="" />
+                                <label className='ml-2' htmlFor='terms'>Accept Our <a href="">terms And Conditions</a></label>
+                            </div>
+                            <div className="form-control mt-6">
+                                <button className="btn btn-primary">SignUp</button>
+                            </div>
+                            <div>
+                                {
+                                    error && <p className='text-red-600'>{error}</p>
+                                }
+                                {
+                                    success && <p className='text-green-600'>{success}</p>
+                                }
+                            </div>
+                        </form>
+                        <p>Already have an account please? <Link className='text-blue-600 font-bold' to='/login'>Login</Link></p>
+                    </div>
                 </div>
             </div>
         </div>
