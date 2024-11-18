@@ -76,7 +76,8 @@ const SignUp = () => {
             return
         }
         console.log(email);
-        // send valodation email
+
+        // send validation email
         passWordResetEmail(email)
             .then(() => {
                 alert('please check your email')

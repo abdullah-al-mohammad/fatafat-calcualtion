@@ -15,15 +15,30 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+        // const user = {email, password}
         console.log(email, password);
 
         signInUser(email, password)
             // signUpUser(email, password)
             .then(result => {
                 // console.log(signInUser);
-                console.log("User signed in:", result.user);
+                const user = result.user;
+                console.log("User signed in:",user);
                 navigate('/')
                 form.reset()
+                fetch('https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108/tabs/Admin', {
+                    method: "POST",
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    console.error(data);
+                    
+                })
 
             })
             .catch(error => {
