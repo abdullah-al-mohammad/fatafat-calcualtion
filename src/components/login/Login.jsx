@@ -23,22 +23,22 @@ const Login = () => {
             .then(result => {
                 // console.log(signInUser);
                 const user = result.user;
-                console.log("User signed in:",user);
+                console.log("User signed in:", user);
                 navigate('/')
                 form.reset()
                 fetch('https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108/tabs/Admin', {
                     method: "POST",
                     mode: 'cors',
                     headers: {
-                        'Content-Type' : 'application/json'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(user)
                 })
-                .then(res => res.json())
-                .then(data =>{
-                    console.error(data);
-                    
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.error(data);
+
+                    })
 
             })
             .catch(error => {

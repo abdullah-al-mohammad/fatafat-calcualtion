@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react"
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from 'react-router-dom';
@@ -19,6 +19,10 @@ const Home = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [value, onChange] = useState(new Date());
     // const [dateTime, setDateTime] = useState(new Date());
+    // const [Id, setId] = useState()
+    // console.log(Id);
+    // const {_id } = userId
+
 
     const CustomTimeInput = ({ date, value, onChange }) => (
         <input
@@ -29,14 +33,22 @@ const Home = () => {
         />
     );
 
+    // useEffect(() =>{
+    //     fetch('http://localhost:5000/calculate')
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         setId(data)
+    //     })
+    // }, [data])
+
     // handle button submit
     const handleSubmit = e => {
 
         if (user) {
             // handleSubmit(e)
             e.preventDefault()
-            const id = uuidv4()
             const form = e.target;
+            const id = uuidv4();
             const date = form.date.value;
             const name = form.name.value;
             const amount = form.amount.value;
@@ -47,7 +59,7 @@ const Home = () => {
             console.log(name, amount, payment, expense, comment, date, time);
             const formData = { id, time, date, name, amount, payment, expense, comment }
             console.log(formData);
-            fetch('https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108', {
+            fetch('http://localhost:5000/calculate', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,7 +143,7 @@ const Home = () => {
                                             <span className="label-text">Payment Method</span>
                                         </label>
                                         <select className="select select-bordered w-full" name='payment' required>
-                                            <option value='' disabled selected hidden>Payment Method💲</option>
+                                            <option value='' disabled selected hidden>Payment Method</option>
                                             <option>Cash</option>
                                             <option>Bkas</option>
                                             <option>Nagad</option>
@@ -152,7 +164,7 @@ const Home = () => {
                                     </div>
                                     <div className="mt-6 flex flex-col lg:flex-row justify-between">
                                         <button className="btn btn-success mb-4 lg:mb-0">Submit</button>
-                                        <Link to='/calculate' className="btn btn-error">Details</Link>
+                                        <Link to='/details' className="btn btn-error">Details</Link>
                                     </div>
                                 </form>
                             </div>

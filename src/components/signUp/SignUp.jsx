@@ -12,7 +12,6 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState();
     const hasUpperCase = /[A-Z]/;
     const emailRef = useRef(null)
-    console.log(emailRef);
 
 
     const handleSignUp = e => {
@@ -23,7 +22,6 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const accepted = form.accepted.checked;
-        console.log(name, email, password);
 
         // reset error and success
         setError('')
@@ -75,7 +73,7 @@ const SignUp = () => {
             alert('please provide valid email')
             return
         }
-        console.log(email);
+        // console.log(email);
 
         // send validation email
         passWordResetEmail(email)

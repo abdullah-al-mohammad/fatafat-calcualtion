@@ -35,9 +35,9 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
-        path: '/calculate',
+        path: '/details',
         element: <PrivateRouter><CalculatDetails></CalculatDetails></PrivateRouter>,
-        loader: () => fetch('https://api.sheetbest.com/sheets/298772df-1e5d-4741-b56d-73e9efabd108')
+        loader: () => fetch('http://localhost:5000/calculate')
       },
       {
         path: '/contact',
