@@ -35,9 +35,9 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
-        path: '/details',
+        path: '/calculate',
         element: <PrivateRouter><CalculatDetails></CalculatDetails></PrivateRouter>,
-        loader: () => fetch('http://localhost:5000/calculate')
+        loader: () => fetch(`http://localhost:5000/calculate`)
       },
       {
         path: '/contact',

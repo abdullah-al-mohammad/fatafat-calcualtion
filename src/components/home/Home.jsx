@@ -164,7 +164,7 @@ const Home = () => {
                                     </div>
                                     <div className="mt-6 flex flex-col lg:flex-row justify-between">
                                         <button className="btn btn-success mb-4 lg:mb-0">Submit</button>
-                                        <Link to='/details' className="btn btn-error">Details</Link>
+                                        <Link to='/calculate' className="btn btn-error">Details</Link>
                                     </div>
                                 </form>
                             </div>
