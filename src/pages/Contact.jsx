@@ -5,7 +5,7 @@ const Contact = () => {
     return (
         <div className='container mx-auto mb-6'>
             <div className='bgContact w-full h-96 relative'>
-                <h1 className="text-6xl text-red-500 text-center">Contact Us</h1>
+                <h1 className="text-6xl text-red-500 text-center top-5">Contact Us</h1>
             </div>
             <div className='mt-9 text-center'>
                 <div className='lg:flex justify-between items-center gap-x-6'>
