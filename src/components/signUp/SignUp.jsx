@@ -1,12 +1,13 @@
 import React from 'react';
-import { useContext, useState, useRef } from 'react'
+import { useContext, useState, useRef, useEffect } from 'react'
 import { AuthContext } from '../../provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { updateProfile } from 'firebase/auth';
+import { data } from 'autoprefixer';
 
 const SignUp = () => {
-    const { signUpUser, passWordResetEmail } = useContext(AuthContext)
+    const { user, signUpUser, passWordResetEmail } = useContext(AuthContext)
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
     const [showPassword, setShowPassword] = useState();
@@ -22,6 +23,8 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const accepted = form.accepted.checked;
+        console.log(name, email, password, accepted);
+
 
         // reset error and success
         setError('')
@@ -46,6 +49,19 @@ const SignUp = () => {
                 console.log(user);
                 setSuccess('Account Created Successfully 😎')
                 form.reset()
+
+                useEffect(() => {
+                    fetch(`http://localhost:5000/calculate?email=${user.email}`, {
+                        method: 'POST',
+                        'content-type': 'application/json',
+                        body: JSON.stringify(user.email)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+
+                        })
+                })
 
                 updateProfile(user, {
                     displayName: name,
@@ -120,7 +136,7 @@ const SignUp = () => {
                                         placeholder="password"
                                         name='password'
                                         className="input input-bordered w-full" required />
-                                    <span className='absolute top-4 right-3' onClick={() => setShowPassword(!showPasssword)}>
+                                    <span className='absolute top-4 right-3' onClick={() => setShowPassword(!showPassword)}>
                                         {
                                             showPassword ? <FaEyeSlash /> : <FaEye />
                                         }
